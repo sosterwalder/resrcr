@@ -1,0 +1,12 @@
+%h4 Our nice timetable (v2!)
+
+%ul{:style => "display: table;"}
+  - pos = 100
+  - machine_width = 50
+  - @timetable_resources.sort.each do |resource, timetable_entries|
+    %li{:style => "display: table-cell; background: #000; color: #fff; table-layout: fixed; border-spacing: 5px; width: #{machine_width}px; height: 50px; border: 1px solid #000; position: absolute; left: 0px; top: #{pos}px;"}
+      = resource
+    - for timetable_entry in timetable_entries
+      %li{:style => "border: 1px solid #000; background: #2ba6cb; color: #fff; display: table-cell; table-layout: fixed; border-spacing: 5px; width: #{timetable_entry.time_needed * 50}px; height: 50px; position: absolute; left: #{machine_width + timetable_entry.start_time * 50}px; top: #{pos}px;"}
+        = timetable_entry.subjob.name
+    - pos += 55

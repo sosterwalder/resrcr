@@ -1,0 +1,34 @@
+%h4 Subjobs
+
+%table.responsible
+  %thead
+    %tr
+      %td ID
+      %td Name
+      %td Job
+      %td Number of steps
+      %td Number of resources
+      %td Actions
+  - @subjobs.each do |@subjob|
+    %tbody
+      %tr
+        %td= @subjob.id 
+        %td= @subjob.name
+        %td
+          - if @subjob.job
+            = @subjob.job.name
+          - else
+            No job
+        %td= @subjob.number_of_steps
+        %td= @subjob.resources.size
+        %td
+          = link_to subjob_path(@subjob) do
+            = image_tag("icons/buttons/show.png", :class => "icon")
+          = link_to subjob_path(@subjob), :method => :delete do 
+            = image_tag("icons/buttons/delete.png", :class => "icon")
+            
+%h6 Actions
+%p
+  = link_to new_subjob_path do
+    = image_tag("icons/buttons/add.png", :class => "icon")
+    Add new

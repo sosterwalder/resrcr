@@ -1,0 +1,33 @@
+%h4 Add new constraint
+
+- if @constraint.errors.any?
+  %errorExplanation
+    %h5.error= "#{pluralize(@constraint.errors.count, "error")} prohibited this constraint from being saved:"
+    %ul
+      - @constraint.errors.full_messages.each do |msg|
+        %li.error= msg
+
+= form_for @constraint, :url => { :action => "create" } do |f|
+  %p#check_for_cycles
+    = label_tag 'check_for_cycles', 'Check for cycles before adding'
+    = check_box_tag 'check_for_cycles', 'true', params[:check_for_cycles] || true
+  %p#constraint_type
+    = f.label :constraint_type
+    = f.collection_select(:constraint_type_id, @constraint_types, :id, :name, { :include_blank => true }, { :data => { :remote => true, :url => "/constraints/get_first_subjobs", :type => :json }})
+  
+  %p#first_subjob
+    = f.label :subjob_one
+    = f.select :subjob_one_id, [], { :include_blank => true }, { :disabled => true, :data => { :remote => true, :url => "/constraints/get_second_subjobs", :type => :json } }
+  
+  %p#second_subjob
+    = f.label :subjob_two
+    = f.select :subjob_two_id, [], { :include_blank => true }, :disabled => true
+  
+  %p
+    = f.submit "Create"
+
+%h6 Actions
+%p
+  = link_to constraints_path do
+    = image_tag("icons/buttons/back.png", :class => "icon")
+    Back

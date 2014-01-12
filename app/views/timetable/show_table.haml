@@ -1,0 +1,27 @@
+%h4 Our nice timetable (v2!)
+
+%table.responsible
+  %thead
+    %tr
+      %td Entry#
+      %td Resource
+      %td Subjob
+      %td Earliest starting time
+      %td Earliest ending time
+      %td Latest starting time
+      %td Latest ending time
+      %td Steps needed
+  
+  %tbody
+  - entry = 1
+  - @timetable.each do |timetable|
+    %tr
+      %td= entry
+      %td= timetable.resource.name
+      %td= timetable.subjob.name
+      %td= timetable.start_time
+      %td= timetable.end_time
+      %td= timetable.latest_start_time
+      %td= timetable.latest_end_time
+      %td= timetable.time_needed
+    - entry += 1

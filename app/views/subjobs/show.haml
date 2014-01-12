@@ -1,0 +1,42 @@
+%h4
+  Subjob details:
+  = @subjob.name 
+
+%table.responsible
+  %tbody
+    %tr
+      %td.bold ID
+      %td= @subjob.id
+    %tr
+      %td.bold Name
+      %td= @subjob.name     
+    %tr
+      %td.bold Number of steps
+      %td= @subjob.number_of_steps
+
+%h5 Resources
+- unless @subjob.resources.blank?
+  %table.responsible
+    %thead
+      %tr
+        %td ID
+        %td Name
+        %td Capacity
+        %td Steps per time unit
+        
+    %tbody
+    - @subjob.resources.each do |@resource|
+      %tr
+        %td= @resource.id
+        %td= @resource.name
+        %td= @resource.capacity
+        %td= @resource.steps_per_time_unit
+        
+- else
+  Subjob has no resources.
+  
+%h6 Actions
+%p
+  = link_to subjobs_path do
+    = image_tag("icons/buttons/back.png", :class => "icon")
+    Back

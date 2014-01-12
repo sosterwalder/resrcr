@@ -1,0 +1,8 @@
+%h4 Our nice timetable
+
+- @array_resources.each_pair do |key, value|
+  %ul{:style => "display: table;"}
+  %li{:style => "display: table-cell; table-layout: fixed; border-spacing: 5px; width: 150px; border: 1px solid #000;"}= value['resource'].name
+  - value['subjobs'].each do |subjob|
+    %li{:style => "border: 1px solid #000; background: #ccc; display: table-cell; table-layout: fixed; border-spacing: 5px; width: #{subjob['time_needed'] * 50}px;"}
+      = subjob['subjob'].name

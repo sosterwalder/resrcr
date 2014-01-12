@@ -1,0 +1,41 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require foundation_and_overrides
+ *= require_tree .
+ */
+
+.bold {
+  font-weight: bold;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+}
+
+.flash-notice {
+  font-size: 17px;
+  color: #007241;
+}
+
+.error {
+  color: #A30008;
+}
+
+.suberror {
+  @extend .error;
+}
+
+.field_with_errors {
+  padding: 5px;
+  border: 1px solid #A30008;
+}

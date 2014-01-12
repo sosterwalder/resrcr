@@ -1,0 +1,25 @@
+%h4 Jobs
+
+%table.responsible
+  %thead
+    %tr
+      %td ID
+      %td Name
+      %td Earliest starting time
+      %td Latest ending time
+      %td # of subjobs
+  - @jobs.each do |@job|
+    %tbody
+      %tr
+        %td= @job.id 
+        %td= @job.name
+        %td= @job.earliest_starting_time || "None"
+        %td= @job.latest_ending_time || "None"
+        %td= @job.subjobs.count || 0
+        
+
+%h6 Actions
+%p
+  = link_to new_job_path do
+    = image_tag("icons/buttons/add.png", :class => "icon")
+    Add new

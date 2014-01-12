@@ -1,0 +1,37 @@
+%h4 Add new subjob
+
+- if @subjob.errors.any?
+  %errorExplanation
+    %h5= "#{pluralize(@subjob.errors.count, "error")} prohibited this subjob from being saved:"
+    %ul
+      - @subjob.errors.full_messages.each do |msg|
+        %li= msg
+
+= form_for @subjob, :url => { :action => "create" } do |f|
+  %p
+    %label Number of steps
+    = f.select :number_of_steps, options_for_select((Resrcr.minimum_number_of_steps..Resrcr.maximum_number_of_steps).step(1).to_a.map{|s| ["#{s}", s]})
+  
+  %p.bold#name
+    %label Name
+    = f.text_field :name
+  
+  %p.bold#job
+    = f.label :job
+    = f.collection_select(:job_id, @jobs, :id, :name, { :include_blank => true }, {})
+  
+  %p.bold#resources
+    = f.label :resources
+    - for resource in @resources do
+      %p
+        = check_box_tag 'subjob[resource_ids][]', resource.id, @subjob.resources.include?(resource)
+        = resource.name
+    
+  %p
+    = f.submit "Create subjob"
+
+%h6 Actions
+%p
+  = link_to subjobs_path do
+    = image_tag("icons/buttons/back.png", :class => "icon")
+    Back

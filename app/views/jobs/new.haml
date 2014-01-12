@@ -1,0 +1,22 @@
+%h4 Add new Job
+
+- if @job.errors.any?
+  %errorExplanation
+    %h5.error= "#{pluralize(@job.errors.count, "error")} prohibited this job from being saved:"
+    %ul
+      - @job.errors.full_messages.each do |msg|
+        %li.suberror= msg
+
+= form_for @job, :url => { :action => "create" } do |f|
+  %p#name
+    %label Name:
+    = f.text_field :name
+    
+  %p
+    = f.submit "Create job"
+
+%h6 Actions
+%p
+  = link_to jobs_path do
+    = image_tag("icons/buttons/back.png", :class => "icon")
+    Back

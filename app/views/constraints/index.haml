@@ -1,0 +1,40 @@
+%h4 Constraints
+
+%table.responsible
+  %thead
+    %tr
+      %td ID
+      %td Constraint type
+      %td Subjob one
+      %td Subjob two
+      %td Actions
+      
+  - @constraints.each do |@constraint|
+    %tbody
+      %tr
+        %td= @constraint.id 
+        %td
+          - if @constraint.constraint_type
+            = @constraint.constraint_type.name
+          - else
+            None
+        %td
+          - if @constraint.subjob_one
+            = @constraint.subjob_one.name
+          - else
+            None
+        %td
+          - if @constraint.subjob_two
+            = @constraint.subjob_two.name
+          - else
+            None
+        %td
+          = link_to constraint_path(@constraint) do
+            = image_tag("icons/buttons/show.png", :class => "icon")
+          = link_to constraint_path(@constraint), :method => :delete, :data => { :confirm => 'Are you sure you want to delete this constraint?' } do 
+            = image_tag("icons/buttons/delete.png", :class => "icon")
+%h6 Actions
+%p
+  = link_to new_constraint_path do
+    = image_tag("icons/buttons/add.png", :class => "icon")
+    Add new

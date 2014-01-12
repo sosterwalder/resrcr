@@ -1,0 +1,21 @@
+%h4 Add new resource
+
+- if @resource.errors.any?
+  %errorExplanation
+    %h5= "#{pluralize(@resource.errors.count, "error")} prohibited this resource from being saved:"
+    %ul
+      - @resource.errors.full_messages.each do |msg|
+        %li= msg
+
+= form_for @resource, :url => { :action => "create" } do |f|
+  %p
+    %label Name:
+    = f.text_field :name
+  %p
+    = f.submit "Create"
+
+%h6 Actions
+%p
+  = link_to resources_path do
+    = image_tag("icons/buttons/back.png", :class => "icon")
+    Back

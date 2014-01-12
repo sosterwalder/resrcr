@@ -1,0 +1,24 @@
+%nav.top-bar
+  %section
+    %ul.left
+      %li.has-dropdown
+        = link_to 'Timetable', ''
+        %ul.dropdown
+          %li= link_to 'Generate old version & view', '/timetable/generate'
+          %li= link_to 'Generate', '/timetable/generate_v2'
+          %li= link_to 'Show', '/timetable/show_table'
+          %li= link_to 'Show plan', '/timetable/show_plan'
+      %li.has-dropdown
+        = link_to 'Manage', ''
+        %ul.dropdown          
+          %li
+            = link_to 'Manage resources', '/resources'
+          %li
+            = link_to 'Manage jobs', '/jobs'
+          %li
+            = link_to 'Manage subjobs', '/subjobs'
+          %li
+            = link_to 'Manage constraints', '/constraints'
+    %ul.left
+      %li
+        = link_to 'Settings', '/settings'

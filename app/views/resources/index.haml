@@ -1,0 +1,20 @@
+%h4 Resources
+
+%table.responsible
+  %thead
+    %tr
+      %td ID
+      %td Name
+      %td Number of subjobs
+  - @resources.each do |@resource|
+    %tbody
+      %tr
+        %td= @resource.id 
+        %td= @resource.name
+        %td= @resource.subjobs.size
+
+%h6 Actions
+%p
+  = link_to new_resource_path do
+    = image_tag("icons/buttons/add.png", :class => "icon")
+    Add new
